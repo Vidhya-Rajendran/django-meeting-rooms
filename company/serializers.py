@@ -13,9 +13,11 @@ def get_emp_id():
 
 class BookingSerializer(serializers.ModelSerializer):
     room_name = serializers.ChoiceField(write_only=True, choices=[])
-    rooms_name = serializers.CharField(source='room_id.room_name', read_only=True)
-    employee_name = serializers.CharField(source='emp_id.employee_name', read_only=True)
+    rooms_name = serializers.CharField(source='room_id.room_name', default=None, read_only=True)
+    employee_name = serializers.CharField(source='emp_id.employee_name', read_only=True, default=None)
     emp_id = serializers.ChoiceField(write_only=True, choices=get_emp_id())
+
+    # def get_rooms_name(self,obj):
 
     def __init__(self, *args, **kwargs):
         super(BookingSerializer, self).__init__(*args, **kwargs)
@@ -33,8 +35,9 @@ class BookingSerializer(serializers.ModelSerializer):
 
     def create(self, validated_data):
         print(validated_data)
-        validated_data.pop('room_name', None)
         validated_data.pop('emp_id', None)
+        validated_data.pop('room_name', None)
+        print(validated_data, 'after')
         bookings = Booking.objects.create(status='Occupied', **validated_data)
         return bookings
 
