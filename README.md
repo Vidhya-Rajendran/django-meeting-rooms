@@ -7,8 +7,9 @@ The application allows users to:
 2. A list of Meeting rooms to view the available meeting rooms
 
 ## Tech Stack
-1. Django
-2. Django RestFramework
+1. Python
+2. Django
+3. Django RestFramework
 
 ## Installation
 
@@ -29,3 +30,16 @@ pip install -r requirements.txt
 ```
 python manage.py runserver
 ```
+## Project Description
+### Book a Meeting Room
+Give the following details to **Book a Meeting Room**
+```
+Room Name
+Employee ID
+Start Time
+End Time
+```
+Room Name and Employee ID can be choosen from the following choices. Start time and End Time are date and time for what time user have to book. Once Meeting room is booked. Then the room status will changed as **Occupied**.If that meeting room's end time exceeds current date & time then room status will changed as **Available**.
+
+
+
