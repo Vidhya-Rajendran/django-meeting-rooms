@@ -16,8 +16,8 @@ class EmployeeDetails(models.Model):
 
 
 class Booking(models.Model):
-    room_id = models.ForeignKey('MeetingRoom', null=True, on_delete=models.SET_NULL, related_name='booking_room')
-    emp_id = models.ForeignKey('EmployeeDetails', null=True, on_delete=models.SET_NULL, related_name='employee_booking')
+    room = models.ForeignKey('MeetingRoom', null=True, on_delete=models.SET_NULL, related_name='booking_room')
+    emp = models.ForeignKey('EmployeeDetails', null=True, on_delete=models.SET_NULL, related_name='employee_booking')
     start_time = models.DateTimeField(auto_now_add=False)
     end_time = models.DateTimeField(auto_now_add=False)
     status = models.CharField(max_length=50, default='Available')
