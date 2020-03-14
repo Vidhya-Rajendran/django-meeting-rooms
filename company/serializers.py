@@ -28,6 +28,7 @@ class BookingSerializer(serializers.ModelSerializer):
                      .values_list('room_name', flat=True))
         self.fields['room_name'].choices = rooms
         Booking.objects.filter(room__room_name__in=rooms).update(status='Available')
+        MeetingRoom.objects.filter(room_name__in=rooms).update(is_available=1)
 
     class Meta:
         model = Booking
@@ -36,6 +37,7 @@ class BookingSerializer(serializers.ModelSerializer):
     def create(self, validated_data):
         validated_data['room'] = MeetingRoom.objects.get(room_name=validated_data.get('room_name'))
         validated_data['emp'] = EmployeeDetails.objects.get(employee_id=validated_data.get('employee_id'))
+        MeetingRoom.objects.filter(room_name=validated_data.get('room_name')).update(is_available=0)
         validated_data.pop('room_name', None)
         validated_data.pop('employee_id', None)
         bookings = Booking.objects.create(status='Occupied', **validated_data)

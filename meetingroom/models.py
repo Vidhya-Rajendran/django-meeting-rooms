@@ -6,6 +6,7 @@ from django.db import models
 class MeetingRoom(models.Model):
     room_name = models.CharField(max_length=50)
     room_type = models.CharField(max_length=50)
+    is_available = models.BooleanField(default=0)
 
 
 class EmployeeDetails(models.Model):

@@ -18,7 +18,8 @@ class BookingViewSet(viewsets.ModelViewSet):
 class AvailableRooms(APIView):
 
     def get(self, request):
-        get_all = MeetingRoom.objects.all().values_list('id', flat=True)
-        query_set = MeetingRoom.objects.filter(Q(booking_room__status='Available')).values_list('room_name', flat=True)
-        return Response(data=set(query_set), status=status.HTTP_200_OK)
+        # get_all = MeetingRoom.objects.all().values_list('id', flat=True)
+        # query_set = MeetingRoom.objects.filter(Q(booking_room__status='Available')).values_list('room_name', flat=True)
+        query_set = MeetingRoom.objects.filter(is_available=1).values('room_name', 'room_type')
+        return Response(data=list(query_set), status=status.HTTP_200_OK)
 
