@@ -1,4 +1,4 @@
-# django-meeting-rooms
+# django-meeting-rooms-booking
 Manage, arrange meeting room usage via simple app
 
 ## Scope 
@@ -39,7 +39,8 @@ Employee ID
 Start Time
 End Time
 ```
-Room Name and Employee ID can be choosen from the following choices. Start time and End Time are date and time for what time user have to book. Once Meeting room is booked. Then the room status will changed as **Occupied**.If that meeting room's end time exceeds current date & time then room status will changed as **Available**.
-
+Room Name and Employee ID can be choosen from the following choices. Start time and End Time are date and time for what time user have to book. Once Meeting room is booked. Then the room status will changed as **Occupied**.If that meeting room's end time less than current date & time then room status will changed as **Available**.
+### List of available rooms
+Meeting rooms will be shown based on available status
 
 
