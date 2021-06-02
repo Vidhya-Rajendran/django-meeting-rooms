@@ -20,6 +20,7 @@ git clone https://github.com/Vidhya-Rajendran/django-meeting-rooms.git
 2. To Creating and activating virtual environment
 ```
 virtualenv envname --python=python3.6
+
 source envname/bin/activate
 ```
 3. Installing project requirements
